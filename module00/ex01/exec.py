@@ -9,5 +9,6 @@ tmp = ''
 for x in s[1:-1:] :
 	tmp += x +' '
 tmp += s[-1]
-tmp = (tmp[::-1]).upper()
-print(tmp)
+tmp = (tmp[::-1])
+tmp = [x.upper() if x.islower() else x.lower() for x in tmp ]
+print(''.join(tmp))
