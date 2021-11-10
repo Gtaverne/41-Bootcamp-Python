@@ -1,8 +1,3 @@
-
-
-from typing import _SpecialForm
-
-
 class Vector():
 	def __init__(self, arr):
 		self.val = arr
