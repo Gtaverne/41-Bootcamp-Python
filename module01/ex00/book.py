@@ -23,7 +23,8 @@ class Book:
 
 	def get_recipes_by_types(self, recipe_type):
 		"""Get all recipe names for a given recipe_type """
-		pass
+		{print(rec) if self.recipe_list[rec].recipe_type == recipe_type else print('', end = '', sep = '') \
+			for rec in self.recipe_list}
 
 	def add_recipe(self, recipe):
 		"""Add a recipe to the book and update last_update"""

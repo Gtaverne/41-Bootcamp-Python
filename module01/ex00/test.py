@@ -8,6 +8,15 @@ newrec = Recipe("A BRAND NEW RECIPE")
 
 #We'll initialize it with a couple recipes, for fun
 
-soup = Recipe("Soup", cooking_lvl = 1, cooking_time = 30, ingredients = ["carrot", "potatoes", "onion", "salt"], description = "Good stuff")
+soup = Recipe("soup", cooking_lvl = 2, cooking_time = 30, ingredients = ["carrot", "potatoes", "onion", "salt"], description = "Good stuff")
 
-print(soup)
+fruitsalad = Recipe("fruit salad", cooking_lvl = 1, cooking_time = 15, ingredients = ["apple", "banana", "orange", "cherry"], description = "Good sweet stuff", recipe_type = "dessert")
+
+lelivre = Book("Goodstuff")
+lelivre.add_recipe(soup)
+lelivre.add_recipe(fruitsalad)
+
+lelivre.get_recipes_by_types("dessert")
+
+
+lelivre
