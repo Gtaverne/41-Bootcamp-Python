@@ -67,6 +67,3 @@ if __name__ == "__main__":
 	machine.make_coffee()
 	machine.add_water(70)
 		
-		
-		
-		

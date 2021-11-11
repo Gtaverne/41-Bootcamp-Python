@@ -2,7 +2,7 @@ from copy import deepcopy
 import random
 
 def generator(text, sep=" ", option=None):
-	if not isinstance(text, str) or not (option in ["", "shuffle", "ordered", "unique"]):
+	if not isinstance(text, str) or not (option in [None, "shuffle", "ordered", "unique"]):
 		print("Error")
 		return
 	tmp = deepcopy(text)
