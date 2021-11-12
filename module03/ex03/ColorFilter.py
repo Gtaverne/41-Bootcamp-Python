@@ -21,15 +21,27 @@ class ColorFilter():
 		return array
 
 	def to_celluloid(self, array, levels = 4):
-		tmp = array[::-1]
-		
 		sz = array.shape
 		for col in range(3):
 			for i in range(sz[0]):
 				for j in range(sz[1]):
 					array[i,j,col] = self.levelfinder(array[i,j,col], levels)
-
 		return (array)
+
+	def to_grayscale(self, array, type = 'weighted'):
+		tmp = array[:,:,-1]
+		sz = array.shape
+		res = np.zeros((sz[0], sz[1]))
+		if type == "m":
+			for i in range(3):
+				res += array[:,:,i]
+			res = res * 1/3
+		elif type == "weighted":
+			res = 0.299 * array[:,:,0] + 0.587 * array[:,:,1] + 0.114 * array[:,:,2]
+		array[:,:,0] = res
+		array[:,:,1] = res
+		array[:,:,2] = res
+		return array
 
 	def levelfinder(self, val, levels):
 		rg = list(range(levels + 1))
@@ -43,3 +55,13 @@ class ColorFilter():
 		except:
 			print(val, flevel)
 		return flevel[i]
+
+
+	def juxtapose(self, array, n, axis = 0):
+		res = array
+		if n == 0:
+			return
+		while(n - 1):
+			res = np.concatenate((res, array), 1 - axis)
+			n -=1
+		return res

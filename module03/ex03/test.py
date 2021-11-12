@@ -23,5 +23,13 @@ imp.display(gr)
 re = cf.to_red(deepcopy(arr))
 imp.display(re)
 
-ce = cf.to_celluloid(deepcopy(arr))
-imp.display(ce)
+# ce = cf.to_celluloid(deepcopy(arr))
+# imp.display(ce)
+
+gr = cf.to_grayscale(deepcopy(arr),)
+print(gr)
+imp.display(gr)
+
+gr = cf.to_grayscale(deepcopy(arr),'m')
+print(gr)
+imp.display(gr)
