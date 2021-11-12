@@ -1,4 +1,5 @@
 from ai42 import log
+from ai42 import loopfunc
 
 import time
 
@@ -12,3 +13,5 @@ def test(tp = 1):
 
 test()
 test(4)
+
+loopfunc(time.sleep, 0.01, cycles = 200)
