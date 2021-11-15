@@ -58,7 +58,8 @@ class Vector():
 			return (sum([x * y for x, y in zip(self.val, other.val)]))
 		else:
 			print("here we are")
-			return (Vector([x * other for x in self.val]))
+			res = [el * other for el in self.val]
+			return (Vector(res))
 
 	def __rmul__(self, other):
 		return self * other
