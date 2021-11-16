@@ -12,9 +12,11 @@ def simple_predict(x, theta):
 	Raises:
 	This function should not raise any Exception.
 	"""
+	pwr = theta.shape[0]
+	res = np.ones((x.shape[0], pwr))
+	for i in range(1, pwr):
+		tmp = np.array([ a * b for a,b in zip(res[:, i - 1], x)])
+		res[:, i] = tmp
 	
-	print(x.shape)
-
-
-	return 
+	return res.dot(theta)
 

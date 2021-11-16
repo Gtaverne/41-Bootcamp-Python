@@ -14,7 +14,7 @@ class Vector():
 			if len(other.val) != len(self.val):
 				print ("Error: You're trying to add vectors of different size")
 				return
-			return (Vector([x+y for x, y in zip(self.val, other.val)]))
+			return (Vector([x+y for x, y in (self.val, other.val)]))
 		else:
 			return (Vector([x+other for x in self.val]))
 

@@ -16,6 +16,14 @@ res3 = simple_predict(x, theta3)
 print(res3)
 
 
+theta4 = np.array([-3, 1])
+res4 = simple_predict(x, theta4)
+print(res4)
+
 theta4 = np.array([-3, 1, 18, 11])
 res4 = simple_predict(x, theta4)
 print(res4)
+
+theta100 = np.array([5, 3])
+res100 = simple_predict(x, theta100)
+print(res100)
