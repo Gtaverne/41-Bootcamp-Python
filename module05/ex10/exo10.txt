@@ -1,0 +1,5 @@
+1- To have y = ax + b, the column of ones allow us to get the b
+2- First, to have absolute values, second, because it puts a high weight on "really absurd" values compared to a lot of "slightly wrong" ones
+3- It is a measure of the mistake, 0 when you have a perfect fit, a lot if you give nonsense
+4- see 3
+5- if you mutliply a m x 1 vector by a 1 x m column, your result is a 1 x 1 scalar, if you multiply a 1 x m column by a m x 1 vector, you have a m x m matrix

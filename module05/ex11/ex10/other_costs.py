@@ -54,10 +54,10 @@ def rmse_(y, y_hat):
 	#On fera des tests a la con plus tard
 	L = y.size
 	dif = y - y_hat
-	return(math.sqrt(np.sum(dif * dif)) / (L))
+	return(math.sqrt(np.sum(dif * dif) / (L)))
 
 def mae_elem(y, y_hat):
-	pass
+	return (np.array([max(a-b, b-a) for a,b in zip(y,y_hat)]))
 
 
 
