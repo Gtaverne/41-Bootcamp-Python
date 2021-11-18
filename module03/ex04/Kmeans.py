@@ -11,7 +11,7 @@ from copy import deepcopy
 
 
 class KmeansClustering:
-	def __init__(self, max_iter=20, ncentroid=4):
+	def __init__(self, max_iter=200, ncentroid=4):
 		self.ncentroid = ncentroid # number of centroids
 		self.max_iter = max_iter # number of max iterations to update the centroids		
 

@@ -39,7 +39,7 @@ print("r3", r3)
 lr2 = MyLR([1, 1], 5e-8, 1500000)
 
 
-lr2.fit_(x, y, verbose=True)
+lr2.fit_(x, y, verbose=False)
 r4 = lr2.thetas
 print('r4', r4)
 # Output:
