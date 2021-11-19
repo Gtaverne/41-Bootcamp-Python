@@ -1,9 +1,10 @@
 import numpy as np
 from time import time
 import matplotlib.pyplot as plt
+from polynomial_model import add_polynomial_features
 
 class MyLinearRegression():
-	def __init__(self, theta = [[1], [1]], alpha=0.01, max_iter=500000):
+	def __init__(self, theta = [[1], [1]], alpha=0.001, max_iter=5000000):
 		self.alpha = alpha
 		self.max_iter = max_iter
 		if type(theta) == type(np.array([])):
@@ -36,16 +37,26 @@ class MyLinearRegression():
 		else:
 			return (res)
 	
-	def fit_(self, x, y):
+	def fit_(self, x, y, Verbose = False):
 
 		print(x)
 		if self.thetas.ndim == 1:
 			self.thetas = self.thetas.reshape(self.thetas.size, 1)
-		alphvec = np.array([self.alpha ** i for i in range(self.thetas.size)]).reshape((-1,1))
+		alphvec = np.array([self.alpha / (10 ** (int(1.8*i))) for i in range(self.thetas.size)]).reshape((-1,1))
 		print (alphvec)
-		for i in range(self.max_iter):
-			#for some reasons, on high dimensions (x**3 and more), you get an exploding gradient. So I built a vector of decreasing weights to limit the impact of high order coefficients
-			self.thetas = self.thetas - alphvec * self.gradient(x,y)
+		if Verbose == False:
+			for i in range(self.max_iter):
+				#for some reasons, on high dimensions (x**3 and more), you get an exploding gradient. So I built a vector of decreasing weights to limit the impact of high order coefficients
+				self.thetas = self.thetas - alphvec * self.gradient(x,y)
+		else :
+			print(self.thetas.size)
+			continuous_x = np.arange(1,10.01, 0.001).reshape(-1,1)
+			continuous_x_cont = add_polynomial_features(continuous_x, self.thetas.size -1)
+			lst = range(1000)
+			for i in self.ft_progress(lst):
+				for _ in range(1 + int(self.max_iter / 1000)):
+					self.thetas = self.thetas - alphvec * self.gradient(x,y)
+				#plt.plot(continuous_x, self.predict_(continuous_x_cont), color="orange")
 		return self.thetas
 
 	def predict_(self, x):
@@ -120,4 +131,5 @@ class MyLinearRegression():
 
 		plt.plot(x, ypred)
 		plt.title(f"Cost = {self.mse_(y,ypred)}")
+		plt.pause(0.05)
 		plt.show()

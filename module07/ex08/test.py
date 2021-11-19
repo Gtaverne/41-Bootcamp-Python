@@ -9,7 +9,8 @@ x = np.arange(1,11).reshape(-1,1)
 y = np.array([[ 1.39270298],
 [ 3.88237651],
 [ 4.37726357],
-[ 4.63389049],
+#[ 4.63389049],
+[ 9.63389049], #This is an absurd value to demonstrate overfitting
 [ 7.79814439],
 [ 6.41717461],
 [ 8.63429886],
@@ -20,11 +21,11 @@ plt.scatter(x,y)
 plt.show()
 
 # Build the model:
-DIM = 5
+DIM = 15
 x_ = add_polynomial_features(x, DIM)
 print(x_)
 my_lr = MyLR(np.zeros(DIM + 1).reshape(-1,1))
-my_lr.fit_(x_, y)
+my_lr.fit_(x_, y, Verbose=True)
 print("We fit")
 # Plot:
 ## To get a smooth curve, we need a lot of data points
