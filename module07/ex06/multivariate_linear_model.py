@@ -1,13 +1,15 @@
 import numpy as np
+from time import time
+import matplotlib.pyplot as plt
 
 class MyLinearRegression():
-	def __init__(self, thetas, alpha=0.001, max_iter=1000):
+	def __init__(self, theta = [[1], [1]], alpha=0.001, max_iter=1000):
 		self.alpha = alpha
 		self.max_iter = max_iter
-		if type(thetas) == type(np.array([])):
-			self.thetas = thetas
+		if type(theta) == type(np.array([])):
+			self.thetas = theta
 		else:
-			self.thetas = np.array(thetas)
+			self.thetas = np.array(theta)
 		print(self.thetas.shape)
 
 	def gradient(self, x, y, Matrix=True):
@@ -42,6 +44,7 @@ class MyLinearRegression():
 
 		for i in range(self.max_iter):
 			self.thetas = self.thetas - self.alpha * self.gradient(x,y)
+		print(self.thetas.shape)
 		return self.thetas
 
 	def predict_(self, x):
@@ -50,7 +53,7 @@ class MyLinearRegression():
 		res = np.insert(x, 0, 1, axis=1)
 		return res.dot(self.thetas)
 
-	def loss_elem_(self, X, y):
+	def mse_elem_(self, X, y):
 		y_hat = self.predict_(X)
 		try :
 			y[0] - y_hat[0]
@@ -70,7 +73,7 @@ class MyLinearRegression():
 		return (res)
 
 
-	def loss_(self, x, y_hat):
+	def mse_(self, x, y_hat):
 		y = self.predict_(x)
 		if y.ndim == 1:
 			y = y.reshape(y.size, 1)
@@ -78,7 +81,7 @@ class MyLinearRegression():
 			y_hat = y_hat.reshape(y_hat.size, 1)
 		L = y.size
 		dif = y - y_hat
-		return(np.sum(dif * dif) / ( 2 * L))
+		return(np.sum(dif * dif) / ( L)) 
 
 	@staticmethod
 	def ft_progress(lst):
@@ -104,4 +107,16 @@ class MyLinearRegression():
 			bar += ">"
 
 			print(f"{beg :<12}{sec :<8}{bar :<27}] {i}/{lmax}  | elapsed time {round(t, 2)}", end = "\r")
-			yield i		
+			yield i
+
+	def plot(self, x, y):
+		plt.plot(x, y, 'o')
+
+		ypred = self.predict_(x)
+		if len(x) < 50:
+			for i in range(len(x)):
+				plt.plot([x[i], x[i]], [ypred[i], y[i]], '--r')
+
+		plt.plot(x, ypred)
+		plt.title(f"Cost = {self.mse_(y,ypred)}")
+		plt.show()
