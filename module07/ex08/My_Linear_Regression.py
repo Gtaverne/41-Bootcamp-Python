@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 from polynomial_model import add_polynomial_features
 
 class MyLinearRegression():
-	def __init__(self, theta = [[1], [1]], alpha=0.001, max_iter=5000000):
+	def __init__(self, theta = [[1], [1]], alpha=0.001, max_iter=100000):
 		self.alpha = alpha
 		self.max_iter = max_iter
 		if type(theta) == type(np.array([])):
