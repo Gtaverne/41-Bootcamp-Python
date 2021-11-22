@@ -1,4 +1,5 @@
-
+import numpy as np
+from numpy.random import default_rng
 
 def data_spliter(x, y, proportion):
 	"""Shuffles and splits the dataset (given by x and y) into a training and a test set,
@@ -21,5 +22,13 @@ def data_spliter(x, y, proportion):
 		return
 	if proportion < 0 or proportion > 1:
 		print("Proportion should be between 0 and 1")
-	l = int(proportion * x.shape)
-	
+	rng = default_rng()
+	shuffler = rng.choice(x.shape[0], x.shape[0], replace = False)
+	xs = np.array([x[i] for i in shuffler])
+	ys = np.array([y[i] for i in shuffler])
+	l = int(proportion * x.shape[0])
+	x_train = xs[:l]
+	x_test = xs[l:]
+	y_train = ys[:l]
+	y_test = ys[l:]
+	return (x_train, x_test, y_train, y_test)
